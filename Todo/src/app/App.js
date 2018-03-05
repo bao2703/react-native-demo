@@ -5,7 +5,7 @@ import {
   Text,
   View
 } from 'react-native';
-import Todo from './components/todo/Todo';
+import Todo from './components/Todo';
 
 export default class App extends Component {
   render() {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Alert, Button, StyleSheet, Text, TextInput, View, FlatList } from 'react-native'
+import TodoItem from './TodoItem'
 
 export default class Todo extends Component {
   constructor(props) {
@@ -14,12 +15,19 @@ export default class Todo extends Component {
     }
   }
 
+  removeTodo(todo) {
+    let todos = this.state.todos.slice();
+    let index = todos.indexOf(todo);
+    todos.splice(index, 1);
+    this.setState({todos});
+  }
+
   render() {
     return (
       <View>
         <FlatList
           data={this.state.todos}
-          renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
+          renderItem={({item}) => <TodoItem todo={item} removeTodo={() => this.removeTodo(item)}></TodoItem>}
         />
         <TextInput
           placeholder="Type here!"
@@ -37,11 +45,5 @@ export default class Todo extends Component {
 }
 
 const styles = StyleSheet.create({
-  item: {
-    padding: 10,
-    fontSize: 16,
-    height: 50,
-    backgroundColor: 'gray',
-    color: 'white'
-  },
+
 });
