@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
 import {AppRegistry, StyleSheet, Text, View, TouchableOpacity, Button, TextInput} from 'react-native';
 import call from 'react-native-phone-call';
-
+import {List, ListItem} from 'react-native-elements';
 
 export default class Phone extends Component {
   constructor(pros){
     super(pros);
     this.state = {
-      number = '',
-    }
+      number: '',
+      list: [],
+    };
   }
   
   static navigationOptions = {
@@ -16,9 +17,21 @@ export default class Phone extends Component {
   };
 
   _onCall = () => {
-    
+    const args = {
+      number: this.state.number.toString, 
+      prompt: false,
+    }
+     
+    call(args).catch(console.error)
   }
 
+  _renderItem = ({item}) => (
+    <ListItem>
+      
+    </ListItem>
+  );
+
+  
   render() {
     return (
       <View style={{ padding: 10 }}>
@@ -32,23 +45,13 @@ export default class Phone extends Component {
           title="Call"
           onPress={this._onCall}
         />
+        <FlatList
+          data={this.state.list}
+          renderItem={this._renderItem}
+        />
       </View>
     )
   }
 }
 
-// var styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: 'space-around',
-//     alignItems: 'center',
-//     backgroundColor: 'transparent',
-//   }
-// });
 
-// const args = {
-//     number: '9093900003', // Number to call
-//     prompt: false // Optional boolean property. Determines if the user should be prompt prior to the call 
-//   }
-   
-//   call(args).catch(console.error)
