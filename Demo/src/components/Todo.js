@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { FlatList, Text, TextInput, View, StyleSheet, Button, TouchableOpacity } from 'react-native';
 
 export default class Todo extends Component {
+  static navigationOptions = {
+    title: 'Todo',
+  };
+
   constructor(pros) {
     super(pros);
     this.state = {
@@ -14,9 +18,9 @@ export default class Todo extends Component {
     };
   }
 
-  static navigationOptions = {
-    title: 'Todo',
-  };
+  componentWillUnmount() {
+    this.props.navigation.state.params.onClose()
+  }
 
   _onAdd = () => {
     const newTodo = { key: this.state.nextKey.toString(), title: this.state.text };

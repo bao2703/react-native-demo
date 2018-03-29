@@ -7,7 +7,11 @@ export default class Home extends Component {
   };
 
   _gotoTodo = () => {
-    this.props.navigation.navigate('Todo');
+    this.props.navigation.navigate('Todo', {
+      onClose: () => {
+        // update your state to open back the camera
+      }
+    });
   }
 
   _gotoPhoneCall = () => {
