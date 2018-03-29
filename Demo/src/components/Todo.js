@@ -12,18 +12,14 @@ export default class Todo extends Component {
       text: '',
       nextKey: 3,
       todos: [
-        { key: '1', title: 'Learn React Native' },
-        { key: '2', title: 'Learn NodeJS' }
+        { key: 1, title: 'Learn React Native' },
+        { key: 2, title: 'Learn NodeJS' }
       ],
     };
   }
 
-  componentWillUnmount() {
-    this.props.navigation.state.params.onClose()
-  }
-
   _onAdd = () => {
-    const newTodo = { key: this.state.nextKey.toString(), title: this.state.text };
+    const newTodo = { key: this.state.nextKey, title: this.state.text };
     this.setState({
       todos: [...this.state.todos, newTodo],
       nextKey: this.state.nextKey + 1

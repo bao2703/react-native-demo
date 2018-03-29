@@ -8,6 +8,7 @@ import { StackNavigator } from 'react-navigation';
 
 import Home from './components/Home';
 import Todo from './components/Todo';
+import TodoWithWebservice from './components/TodoWithWebservice';
 import Phone from './components/Phone';
 
 export default class App extends Component {
@@ -26,6 +27,9 @@ const RootStack = StackNavigator(
     },
     Todo: {
       screen: Todo,
+    },
+    TodoWithWebservice: {
+      screen: TodoWithWebservice,
     },
     Phone: {
       screen: Phone,

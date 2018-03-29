@@ -7,11 +7,11 @@ export default class Home extends Component {
   };
 
   _gotoTodo = () => {
-    this.props.navigation.navigate('Todo', {
-      onClose: () => {
-        // update your state to open back the camera
-      }
-    });
+    this.props.navigation.navigate('Todo');
+  }
+
+  _gotoTodo2 = () => {
+    this.props.navigation.navigate('TodoWithWebservice');
   }
 
   _gotoPhoneCall = () => {
@@ -26,9 +26,19 @@ export default class Home extends Component {
           onPress={this._gotoTodo}
         >
           <Text style={styles.title}>
-            Todo App
+            Todo
           </Text>
         </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[styles.container, styles.todoWithWebserviceContainer]}
+          onPress={this._gotoTodo2}
+        >
+          <Text style={styles.title}>
+            Todo (Webservice)
+          </Text>
+        </TouchableOpacity>
+
         <TouchableOpacity
           style={[styles.container, styles.phoneContainer]}
           onPress={this._gotoPhoneCall}
@@ -50,6 +60,9 @@ const styles = StyleSheet.create({
   },
   todoContainer: {
     backgroundColor: '#3F51B5',
+  },
+  todoWithWebserviceContainer: {
+    backgroundColor: '#03A9F4',
   },
   phoneContainer: {
     backgroundColor: '#9C27B0'
