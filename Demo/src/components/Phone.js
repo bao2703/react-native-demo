@@ -1,6 +1,9 @@
+'use strict';
+
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Text, View, TouchableOpacity, Button, TextInput, FlatList } from 'react-native';
 import call from 'react-native-phone-call';
+import Communications from 'react-native-communications';
 
 export default class Phone extends Component {
   static navigationOptions = {
@@ -50,5 +53,20 @@ export default class Phone extends Component {
     )
   }
 }
+
+var styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: 'rgb(253,253,253)',
+  },
+  holder: {
+    flex: 0.25,
+    justifyContent: 'center',
+  },
+  text: {
+    fontSize: 32,
+  },
+});
 
 
