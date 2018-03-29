@@ -6,11 +6,7 @@ export default class Todo extends Component {
     super(pros);
     this.state = {
       text: '',
-      nextKey: 3,
-      todos: [
-        { key: '1', title: 'Learn React Native' },
-        { key: '2', title: 'Learn NodeJS' }
-      ],
+      todos: ['Learn React Native']
     };
   }
 
@@ -18,33 +14,23 @@ export default class Todo extends Component {
     title: 'Home',
   };
 
-  _onRemove = (todo) => {
-    const removeIndex = this.state.todos.indexOf(todo);
-    const todos = this.state.todos.filter((item, index) => index != removeIndex);
-    this.setState({ todos });
-  }
+  onRemove = () => {
 
-  _onAdd = () => {
-    const newTodo = { key: this.state.nextKey.toString(), title: this.state.text };
-    this.setState({ todos: [...this.state.todos, newTodo] });
-    this.setState({ nextKey: this.state.nextKey + 1 });
   }
-
-  _renderItem = ({item}) => (
-    <View style={styles.todo}>
-      <Text style={styles.todoTitle}>{item.title}</Text>
-      <TouchableOpacity onPress={() => this._onRemove(item)}>
-        <Text style={styles.todoRemove}>Remove</Text>
-      </TouchableOpacity>
-    </View>
-  );
 
   render() {
     return (
-      <View style={{ padding: 10 }}>
+      <View style={{padding: 10}}>
         <FlatList
           data={this.state.todos}
-          renderItem={this._renderItem}
+          renderItem={({item}) => (
+            <View style={styles.todo}>
+              <Text style={styles.todoTitle}>{item}</Text>
+              <TouchableOpacity onPress={this.onRemove}>
+                <Text style={styles.todoRemove}>Remove</Text>
+              </TouchableOpacity>
+            </View>
+          )}
         />
         <TextInput
           placeholder="Type here!"
@@ -52,7 +38,7 @@ export default class Todo extends Component {
         />
         <Button
           title="Add"
-          onPress={this._onAdd}
+          onPress={() => this.setState({todos: [...this.state.todos, this.state.text]})}
         />
       </View>
     )

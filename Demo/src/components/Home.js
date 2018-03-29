@@ -6,7 +6,7 @@ export default class Home extends Component {
     title: 'Home',
   };
 
-  _gotoTodo = () => {
+  gotoTodo = () => {
     this.props.navigation.navigate('Todo');
   }
 
@@ -14,7 +14,7 @@ export default class Home extends Component {
     return (
       <View style={{ flex: 1 }}>
         <TouchableOpacity style={[styles.container, styles.todoContainer]}
-                          onPress={this._gotoTodo}>
+                          onPress={this.gotoTodo}>
           <Text style={styles.todo}>
             Todo App
           </Text>
