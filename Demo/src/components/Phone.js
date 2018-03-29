@@ -3,6 +3,10 @@ import { AppRegistry, StyleSheet, Text, View, TouchableOpacity, Button, TextInpu
 import call from 'react-native-phone-call';
 
 export default class Phone extends Component {
+  static navigationOptions = {
+    title: 'Phone Call',
+  };
+
   constructor(pros) {
     super(pros);
     this.state = {
@@ -10,10 +14,6 @@ export default class Phone extends Component {
       list: [],
     };
   }
-
-  static navigationOptions = {
-    title: 'Phone Call',
-  };
 
   _onCall = () => {
     const args = {
