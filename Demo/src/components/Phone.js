@@ -17,7 +17,7 @@ export default class Phone extends Component {
 
   _onCall = () => {
     const args = {
-      number: this.state.number.toString,
+      number: this.state.number.toString(),
       prompt: false,
     }
 
