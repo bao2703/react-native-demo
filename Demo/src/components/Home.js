@@ -6,17 +6,31 @@ export default class Home extends Component {
     title: 'Home',
   };
 
-  gotoTodo = () => {
+  _gotoTodo = () => {
     this.props.navigation.navigate('Todo');
+  }
+
+  _gotoPhoneCall = () => {
+    this.props.navigation.navigate('Phone');
   }
 
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <TouchableOpacity style={[styles.container, styles.todoContainer]}
-                          onPress={this.gotoTodo}>
-          <Text style={styles.todo}>
+        <TouchableOpacity
+          style={[styles.container, styles.todoContainer]}
+          onPress={this._gotoTodo}
+        >
+          <Text style={styles.title}>
             Todo App
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.container, styles.phoneContainer]}
+          onPress={this._gotoPhoneCall}
+        >
+          <Text style={styles.title}>
+            Phone Call
           </Text>
         </TouchableOpacity>
       </View>
@@ -33,7 +47,10 @@ const styles = StyleSheet.create({
   todoContainer: {
     backgroundColor: '#3F51B5',
   },
-  todo: {
+  phoneContainer: {
+    backgroundColor: '#9C27B0'
+  },
+  title: {
     color: 'white',
     fontSize: 20
   }
