@@ -18,19 +18,17 @@ export default class Phone extends Component {
     };
   }
 
-  _onCall = () => {
-    const args = {
-      number: this.state.number.toString(),
-      prompt: false,
-    }
-
-    call(args).catch(console.error)
-  }
-
   _renderItem = ({ item }) => (
     <Text>A</Text>
   );
 
+  _onCall = () => {
+    Communications.call(this.state.number.toString(), true)
+  }
+
+  _onMessage = () => {
+    Communications.text(this.state.number.toString())
+  }
 
   render() {
     return (
@@ -39,17 +37,35 @@ export default class Phone extends Component {
           keyboardType={'phone-pad'}
           value={this.state.number}
           onChangeText={number => this.setState({ number })}
-          onSubmitEditing={this._onCall}
-        />
-        <Button
+          onSubmitEditing={this._onCall}/>
+
+        <Button 
           title="Call"
-          onPress={this._onCall}
-        />
+          onPress={this._onCall}/>
+
+        <Button 
+          title="Message"
+          onPress={this._onMessage}/>
+
         <FlatList
           data={this.state.list}
-          renderItem={this._renderItem}
-        />
+          renderItem={this._renderItem}/>
+
       </View>
+
+      // <View style={styles.container}>
+      //   <View style={styles.button}>
+      //     <Button 
+      //       title="Call"
+      //       onPress={this._onCall}/>
+      //   </View>
+
+      //   <View style={styles.button}>
+      //     <Button 
+      //       title="Message"
+      //       onPress={this._onMessage}/>
+      //   </View>
+      // </View> 
     )
   }
 }
@@ -57,16 +73,13 @@ export default class Phone extends Component {
 var styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'rgb(253,253,253)',
-  },
-  holder: {
-    flex: 0.25,
     justifyContent: 'center',
   },
-  text: {
-    fontSize: 32,
-  },
+  button: {
+    flex: 1,
+  }
 });
 
 
