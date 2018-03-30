@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Button, TextInput, FlatList } from 'react-native';
 import Communications from 'react-native-communications';
+import simpleContacts from 'react-native-simple-contacts';
 
 export default class Communication extends Component {
   static navigationOptions = {
@@ -9,13 +10,20 @@ export default class Communication extends Component {
 
   constructor(pros) {
     super(pros);
+
+    
+
     this.state = {
       number: '',
       message: '',
       list: [],
     };
-  }
 
+    simpleContacts.getContacts().then((contacts) => {
+      contacts => this.setState({list})
+    });
+  }
+  
   _renderItem = ({ item }) => (
     <Text>A</Text>
   );
@@ -70,7 +78,8 @@ export default class Communication extends Component {
 
         <FlatList
           data={this.state.list}
-          renderItem={this._renderItem} />
+          renderItem={this._renderItem}
+          keyExtractor={(_, index) => index} />
       </View>
     )
   }
