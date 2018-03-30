@@ -14,8 +14,8 @@ export default class Home extends Component {
     this.props.navigation.navigate('TodoWithWebservice');
   }
 
-  _gotoPhoneCall = () => {
-    this.props.navigation.navigate('Phone');
+  _gotoCommunication = () => {
+    this.props.navigation.navigate('Communication');
   }
 
   render() {
@@ -41,10 +41,10 @@ export default class Home extends Component {
 
         <TouchableOpacity
           style={[styles.container, styles.phoneContainer]}
-          onPress={this._gotoPhoneCall}
+          onPress={this._gotoCommunication}
         >
           <Text style={styles.title}>
-            Phone Call
+            Communication
           </Text>
         </TouchableOpacity>
       </View>
