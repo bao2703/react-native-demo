@@ -17,6 +17,7 @@ export default class Communication extends Component {
       list: [],
     };
 
+
     Contacts.getAll((err, contacts) => {
       if (err === 'denied') {
 
@@ -27,9 +28,26 @@ export default class Communication extends Component {
     })
   }
 
-  _renderItem = ({ item }) => (
-    <Text>{item.givenName}</Text>
-  );
+  _buttonClickCall(contactsNumber) {
+    Communications.phonecall(contactsNumber, true)
+  }
+
+  _buttonClickMessage(contactsNumber) {
+    Communications.text(contactsNumber)
+  }
+
+  _renderItem = ({ item }) => {
+    const name = item.givenName;
+    const number = item.phoneNumbers[0].number;
+    return (
+      <View>
+        <Text>{name}</Text>
+        <Text>{number}</Text>
+        <Button onPress={() => this._buttonClickCall(number)} title="Call" />
+        <Button onPress={() => this._buttonClickMessage(number)} title="Message" />
+      </View>
+    )
+  };
 
   _onCall = () => {
     if (this.state.number) {
