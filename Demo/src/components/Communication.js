@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Button, TextInput, FlatList } from 'react-native';
 import Communications from 'react-native-communications';
-import simpleContacts from 'react-native-simple-contacts';
+import Contacts from 'react-native-contacts';
 
 export default class Communication extends Component {
   static navigationOptions = {
@@ -11,21 +11,24 @@ export default class Communication extends Component {
   constructor(pros) {
     super(pros);
 
-    
-
     this.state = {
       number: '',
       message: '',
       list: [],
     };
 
-    simpleContacts.getContacts().then((contacts) => {
-      contacts => this.setState({list})
-    });
+    Contacts.getAll((err, contacts) => {
+      if (err === 'denied') {
+
+      } else {
+        this.setState({ list: contacts });
+        console.log(contacts);
+      }
+    })
   }
-  
+
   _renderItem = ({ item }) => (
-    <Text>A</Text>
+    <Text>{item.givenName}</Text>
   );
 
   _onCall = () => {
