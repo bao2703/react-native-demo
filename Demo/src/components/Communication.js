@@ -11,8 +11,6 @@ export default class Communication extends Component {
   constructor(pros) {
     super(pros);
 
-    
-
     this.state = {
       number: '',
       message: '',
@@ -20,12 +18,25 @@ export default class Communication extends Component {
     };
 
     simpleContacts.getContacts().then((contacts) => {
-      contacts => this.setState({list})
+      this.setState({contacts: this.state.list});
     });
   }
   
+  _buttonClickCall(contactsNumber) {
+    Communications.phonecall(contactsNumber, true)
+  }
+
+  _buttonClickMessage(contactsNumber) {
+    //make message
+  }
+
   _renderItem = ({ item }) => (
-    <Text>A</Text>
+    <View>
+      <Text>{item.name}</Text>
+      <Text>{item.number}</Text>
+      <Button onPress={this._buttonClickCall(item.number)} title="Call"/>
+      <Button onPress={this._buttonClickMessage(item.number)} title="Message"/>
+    </View>
   );
 
   _onCall = () => {
