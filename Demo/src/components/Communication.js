@@ -40,11 +40,20 @@ export default class Communication extends Component {
     const name = item.givenName;
     const number = item.phoneNumbers[0].number;
     return (
-      <View>
-        <Text>{name}</Text>
+      <View style={styles.contactsView}>
+        <Text style={styles.text}>{name}</Text>
         <Text>{number}</Text>
-        <Button onPress={() => this._buttonClickCall(number)} title="Call" />
-        <Button onPress={() => this._buttonClickMessage(number)} title="Message" />
+        {/* <Button onPress={() => this._buttonClickCall(number)} title="Call" />
+        <Button onPress={() => this._buttonClickMessage(number)} title="Message" /> */}
+        <View style={styles.actionContainer}>
+          <View style={styles.button}>
+            <Button onPress={() => this._buttonClickCall(number)} title="Call" />
+          </View>
+
+          <View style={styles.button}>
+            <Button onPress={() => this._buttonClickMessage(number)} title="Message" color="#841584"/>
+          </View>
+        </View>
       </View>
     )
   };
@@ -118,7 +127,17 @@ var styles = StyleSheet.create({
   button: {
     flex: 1,
     padding: 5
-  }
+  },
+  text: {
+    fontSize: 15,
+    fontWeight: 'bold',
+  },
+  contactsView: {
+    padding: 10,
+    paddingTop: 5,
+    borderBottomColor: '#bbb',
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
 });
 
 
