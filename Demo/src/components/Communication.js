@@ -18,16 +18,16 @@ export default class Communication extends Component {
     };
 
     simpleContacts.getContacts().then((contacts) => {
-      this.setState({contacts: this.state.list});
+      list: contacts
     });
   }
-  
+
   _buttonClickCall(contactsNumber) {
     Communications.phonecall(contactsNumber, true)
   }
 
   _buttonClickMessage(contactsNumber) {
-    //make message
+    Communications.text(contactsNumber)
   }
 
   _renderItem = ({ item }) => (
