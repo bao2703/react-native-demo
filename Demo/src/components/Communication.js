@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Button, TextInput, FlatList } from 'react-native';
 import Communications from 'react-native-communications';
 import Contacts from 'react-native-contacts';
+import Swipeout from 'react-native-swipeout';
 
 export default class Communication extends Component {
   static navigationOptions = {
@@ -15,7 +16,6 @@ export default class Communication extends Component {
       number: '',
       message: '',
       list: [],
-      visible: false,
     };
 
 
@@ -37,33 +37,37 @@ export default class Communication extends Component {
     Communications.text(contactsNumber)
   }
 
-  _onPressItem = () => {
-    this.setState({
-      visible: !this.state.visible
-    });
-  }
-
   _renderItem = ({ item }) => {
     const name = item.givenName;
     const number = item.phoneNumbers[0].number;
+    const swipeSettings = {
+      autoClose: true,
+      right: [{
+        onPress: () => {
+          Communications.phonecall(number, true)
+        },
+        text: "Call",
+      }],
+      left: [{
+        onPress: () => {
+          Communications.text(number)
+        },
+        text: "Message",
+      }],
+      rowID: this.props.index,
+      secID: 1
+    }
     return (
-      <View style={styles.contactsView}>
-        <TouchableOpacity onPress={this._onPressItem}>
-          <View>
-            <Text style={styles.text}>{name}</Text>
-            <Text>{number}</Text>
-        </View>
-        </TouchableOpacity>
-
-        <View style={styles.actionContainer}>
-          <View style={styles.button}>
-            <Button onPress={() => this._buttonClickCall(number)} title="Call" />
+      <Swipeout {...swipeSettings}>
+        <View style={styles.contactsView}>
+          <TouchableOpacity>
+            <View>
+              <Text style={styles.text}>{name}</Text>
+              <Text>{number}</Text>
           </View>
-          <View style={styles.button}>
-            <Button onPress={() => this._buttonClickMessage(number)} title="Message" color="#841584"/>
-          </View>
-        </View>
+          </TouchableOpacity>
       </View>
+      </Swipeout>
     )
   };
 
