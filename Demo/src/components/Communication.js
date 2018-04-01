@@ -15,6 +15,7 @@ export default class Communication extends Component {
       number: '',
       message: '',
       list: [],
+      visible: false,
     };
 
 
@@ -36,20 +37,28 @@ export default class Communication extends Component {
     Communications.text(contactsNumber)
   }
 
+  _onPressItem = () => {
+    this.setState({
+      visible: !this.state.visible
+    });
+  }
+
   _renderItem = ({ item }) => {
     const name = item.givenName;
     const number = item.phoneNumbers[0].number;
     return (
       <View style={styles.contactsView}>
-        <Text style={styles.text}>{name}</Text>
-        <Text>{number}</Text>
-        {/* <Button onPress={() => this._buttonClickCall(number)} title="Call" />
-        <Button onPress={() => this._buttonClickMessage(number)} title="Message" /> */}
+        <TouchableOpacity onPress={this._onPressItem}>
+          <View>
+            <Text style={styles.text}>{name}</Text>
+            <Text>{number}</Text>
+        </View>
+        </TouchableOpacity>
+
         <View style={styles.actionContainer}>
           <View style={styles.button}>
             <Button onPress={() => this._buttonClickCall(number)} title="Call" />
           </View>
-
           <View style={styles.button}>
             <Button onPress={() => this._buttonClickMessage(number)} title="Message" color="#841584"/>
           </View>
