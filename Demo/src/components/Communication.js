@@ -54,8 +54,6 @@ export default class Communication extends Component {
         },
         text: "Message",
       }],
-      rowID: this.props.index,
-      secID: 1
     }
     return (
       <Swipeout {...swipeSettings}>
