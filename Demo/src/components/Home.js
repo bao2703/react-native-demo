@@ -18,6 +18,10 @@ export default class Home extends Component {
     this.props.navigation.navigate('Communication');
   }
 
+  _gotoCamera = () => {
+    this.props.navigation.navigate('Camera');
+  }
+
   render() {
     return (
       <View style={{ flex: 1 }}>
@@ -47,6 +51,15 @@ export default class Home extends Component {
             Communication
           </Text>
         </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[styles.container, styles.cameraContainer]}
+          onPress={this._gotoCamera}
+        >
+          <Text style={styles.title}>
+            Camera
+          </Text>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -66,6 +79,9 @@ const styles = StyleSheet.create({
   },
   phoneContainer: {
     backgroundColor: '#9C27B0'
+  },
+  cameraContainer: {
+    backgroundColor: '#FF9933'
   },
   title: {
     color: 'white',

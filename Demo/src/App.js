@@ -10,6 +10,7 @@ import Home from './components/Home';
 import Todo from './components/Todo';
 import TodoWithWebservice from './components/TodoWithWebservice';
 import Communication from './components/Communication';
+import Camera from './components/Camera';
 
 export default class App extends Component {
 
@@ -33,6 +34,9 @@ const RootStack = StackNavigator(
     },
     Communication: {
       screen: Communication,
+    },
+    Camera: {
+      screen: Camera,
     },
   },
   {
