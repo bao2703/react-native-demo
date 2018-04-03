@@ -8,7 +8,6 @@ import { StackNavigator } from 'react-navigation';
 
 import Home from './components/Home';
 import Todo from './components/Todo';
-import TodoWithWebservice from './components/TodoWithWebservice';
 import Communication from './components/Communication';
 import Camera from './components/Camera';
 
@@ -28,9 +27,6 @@ const RootStack = StackNavigator(
     },
     Todo: {
       screen: Todo,
-    },
-    TodoWithWebservice: {
-      screen: TodoWithWebservice,
     },
     Communication: {
       screen: Communication,

@@ -35,15 +35,6 @@ export default class Home extends Component {
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={[styles.container, styles.todoWithWebserviceContainer]}
-          onPress={this._gotoTodo2}
-        >
-          <Text style={styles.title}>
-            Todo (Webservice)
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
           style={[styles.container, styles.phoneContainer]}
           onPress={this._gotoCommunication}
         >
@@ -73,9 +64,6 @@ const styles = StyleSheet.create({
   },
   todoContainer: {
     backgroundColor: '#3F51B5',
-  },
-  todoWithWebserviceContainer: {
-    backgroundColor: '#03A9F4',
   },
   phoneContainer: {
     backgroundColor: '#9C27B0'
