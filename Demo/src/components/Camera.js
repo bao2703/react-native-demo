@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
-import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
+import { RNCamera } from 'react-native-camera';
 
 export default class Camera extends Component {
-    static navigationOptions = {
-        title: 'Camera',
-      };
-    
-      constructor(pros) {
-        super(pros);
-    
-        this.state = {
-          
-        };
-    }
+  static navigationOptions = {
+    title: 'Camera',
+  };
 
-    render() {
-        return(
-            <View>
+  constructor(pros) {
+    super(pros);
 
-            </View>
-        )
-    }
+    this.state = {
+
+    };
+  }
+
+  render() {
+    return (
+      <View>
+
+      </View>
+    )
+  }
 }
-  
