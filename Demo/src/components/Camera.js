@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, Dimensions } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, Dimensions, CameraRoll } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 
 export default class Camera extends Component {
   static navigationOptions = {
     title: 'Camera',
+  };
+
+  state = {
+    cameraRollUri: null,
   };
 
   constructor(pros) {
@@ -15,9 +19,11 @@ export default class Camera extends Component {
     if (this.camera) {
       const options = { quality: 0.5, base64: true };
       const data = await this.camera.takePictureAsync(options)
+      CameraRoll.saveToCameraRoll(data.uri, 'photo');
       console.log(data.uri);
     }
   };
+
 
   render() {
     return (
